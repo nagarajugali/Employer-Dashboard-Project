@@ -24,9 +24,9 @@ A simple web application to manage employee details including adding, listing, a
 - [x] Created ManageEmployee component for adding employees  
 - [x] Created EmployeeList component for displaying and deleting employees  
 - [x] Add update employee feature
-- [ ] Dashboard component using react 
-- [ ] Improve UI and styling using css and bootstrap
-- [ ] Improve Error handling and validation
+- [x] Dashboard component using react 
+- [x] Improve UI and styling using css and bootstrap
+- [x] Improve Error handling and validation
 - [ ] ADD login page ( authentication) to have secure access 
 
 
