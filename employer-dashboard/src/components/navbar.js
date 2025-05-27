@@ -1,6 +1,13 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-export default function Navbar(){
+import { useNavigate } from 'react-router-dom';
+export default function Navbar({setIsAuthenticated}){
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setIsAuthenticated(false);
+        navigate("/");
+    };
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -20,7 +27,11 @@ export default function Navbar(){
                             <NavLink className="nav-link" to="/employee-list">Employee List</NavLink>
                         </li>
                     </ul>
+                    <button onClick={handleLogout} className="btn btn-danger ms-auto">
+                    Logout
+                </button>
                 </div>
+                
             </div>
             </nav>
     );

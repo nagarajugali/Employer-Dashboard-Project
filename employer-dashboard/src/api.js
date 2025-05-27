@@ -9,3 +9,6 @@ export const addEmployee = (employeeData) => {
 export const deleteEmployee = (employeeId) => {
     return axios.delete(`${BASE_URL}/employee/${employeeId}`);
 }
+export const  LoginHandler = (username, password) => {
+    return axios.post(`${BASE_URL}/login`, { username, password });
+}

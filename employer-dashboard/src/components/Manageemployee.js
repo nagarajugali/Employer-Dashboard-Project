@@ -22,7 +22,7 @@ export default function AddEmployee({fetchData}) {
         e.preventDefault();
         try{
             await addEmployee(newemployee);
-            console.log("Employee added successfully:");
+           
             setNewEmployee({
                  employee_name: "",gender: "",
                  age: "",
@@ -31,6 +31,7 @@ export default function AddEmployee({fetchData}) {
                 joining_date: "",
                 job_role: "",});
             // alert("Employee added successfully");
+             alert("Employee added successfully:");
             fetchData();
 
         }

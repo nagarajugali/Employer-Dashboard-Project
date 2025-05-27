@@ -4,8 +4,10 @@ import tornado.autoreload
 from handler.employee_handler import EmployeeHandler
 from handler.addemployee_handler import AddEmployeeHandler
 from handler.deleteemployee_handler import DeleteEmployeeHandler
+from handler.loginpage_handler import LoginHandler
 def make_app():
     return tornado.web.Application([
+        (r"/login",LoginHandler),
          (r"/employee/([0-9]*)",DeleteEmployeeHandler),
         (r'/employee/add',AddEmployeeHandler),
         (r"/employee",EmployeeHandler)])

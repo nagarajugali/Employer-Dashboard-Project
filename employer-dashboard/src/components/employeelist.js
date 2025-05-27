@@ -77,6 +77,8 @@ useEffect(()=>{
 
    
     const handleDelete = async (employeeId) => {
+      const confirmDelete = window.confirm("Are you sure you want to delete this employee?");
+      if (!confirmDelete) return; // if user cancels, do nothing
         try { 
             await deleteEmployee(employeeId);
              fetchData();
