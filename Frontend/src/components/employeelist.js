@@ -19,7 +19,7 @@ export default function EmployeeList({employeeList,fetchData,error}) {
     let filtered =[...employeeList];
     if (ageFilter!=="all"){
       filtered=filtered.filter((emp)=>{
-      if (ageFilter==="under 30") return emp.age<=30;
+      if (ageFilter==="under 30") return emp.age<30;
       if (ageFilter === "30to50") return emp.age >= 30 && emp.age <= 50;
       if (ageFilter === "above50") return emp.age > 50;
 
