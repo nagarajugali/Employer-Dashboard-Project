@@ -27,7 +27,7 @@ A simple web application to manage employee details including adding, listing, a
 - [x] Dashboard component using react 
 - [x] Improve UI and styling using css and bootstrap
 - [x] Improve Error handling and validation
-- [ ] ADD login page ( authentication) to have secure access 
+- [x] ADD login page ( authentication) to have secure access 
 
 
 
@@ -40,3 +40,10 @@ A simple web application to manage employee details including adding, listing, a
 - DELETE /employee/<id> - Delete employee by ID
 
 ---
+
+# FRONT-END -React.js
+# Backed -Tornado
+# database - mysql
+ 
+
+
