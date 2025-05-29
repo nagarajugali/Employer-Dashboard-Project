@@ -1,33 +1,27 @@
-# Employer Dashboard Project
+# 🧑‍💻 Employer Dashboard Project
 
-A simple web application to manage employee details including adding, listing, and deleting employees.
+A full-stack web application to manage and monitor employee data efficiently. The dashboard allows employers to add, view, filter, and delete employee records with a responsive UI.
 
 ---
 
 ## Features
 
-- Add new employees with details such as name, gender, age, skillset, experience, joining date, and job role.
-- View a list of all employees in the company.
-- Delete employees from the list.
-- Dashboard that shows no of employees . gender wise , average age , experience .
-- Backend APIs built using Python Tornado framework.
-- Frontend built using React.js with React Router for navigation.
-- axios to get backend API calls.
-- MySQL database for storing employee data.
+- Filter employees by age, gender, skills, experience, joining year, and role
+-  Add and delete employees with real-time updates
+-  Pagination for easy data navigation
+-  Admin authentication (username/password)
+-  Backend built with Tornado (Python) + MySQL
+-  REST API endpoints for data operations
 
 ----
 
-## Current Progress
+## 🛠 Tech Stack
 
-- [x] Backend setup done , created GET,POST,DELETE API calls and connected mysql to toranado .CORS handler done to have communication between react and tornado .
-- [x] Setup React frontend with routing  
-- [x] Created ManageEmployee component for adding employees  
-- [x] Created EmployeeList component for displaying and deleting employees  
-- [x] Add update employee feature
-- [x] Dashboard component using react 
-- [x] Improve UI and styling using css and bootstrap
-- [x] Improve Error handling and validation
-- [x] ADD login page ( authentication) to have secure access 
+| Frontend  | Backend  | Database | Styling   | API Calls   |
+|-----------|----------|----------|-----------|-------------|
+| React.js  | Tornado  | MySQL    | Bootstrap | axios       |
+
+---
 
 
 
@@ -38,12 +32,7 @@ A simple web application to manage employee details including adding, listing, a
 - POST /employee/add - Add new employee
 
 - DELETE /employee/<id> - Delete employee by ID
-
 ---
-
-# FRONT-END -React.js
-# Backed -Tornado
-# database - mysql
  
 
 
