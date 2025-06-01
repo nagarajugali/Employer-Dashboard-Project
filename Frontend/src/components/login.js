@@ -26,7 +26,7 @@ export default function Login({setIsAuthenticated}) {
             setTimeout(()=>{
                 localStorage.removeItem("token");
                 setIsAuthenticated(false);
-                navigate("/Login"); // Redirect to login page after token expiry
+                navigate("/"); // Redirect to login page after token expiry
             }, expiretime);
             setUserName("");
             setPassword("");
