@@ -77,6 +77,29 @@ npm start
 | GET    | `/employee`         | Get all employee records |
 | POST   | `/employee/add`     | Add a new employee       |
 | DELETE | `/employee/<id>`    | Delete employee by ID    |
+------
+
+## 🌐WESITE 
+
+### LOGIN PAGE:
+
+![image](https://github.com/user-attachments/assets/6436c651-94d8-4a10-8c69-ac76a9ddc6ce) 
+
+### DASHBOARD:
+
+![image](https://github.com/user-attachments/assets/9409887b-e1cd-4ef9-a367-6f5b5ef6673c)
+
+### ADDING EMPLOYEE:
+
+![image](https://github.com/user-attachments/assets/69c3690b-4b22-444f-a51c-ddc31c9db345)
+
+
+### EmployeeList:
+
+![image](https://github.com/user-attachments/assets/bf5dfb5d-b550-46f0-88a2-03a86cd13625)
+
+
+
 
 
 
