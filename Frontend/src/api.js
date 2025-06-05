@@ -12,3 +12,6 @@ export const deleteEmployee = (employeeId) => {
 export const  LoginHandler = (username, password) => {
     return axios.post(`${BASE_URL}/login`, { username, password });
 }
+export const editEmployee = (employeeId, employeeData) => {
+    return axios.put(`${BASE_URL}/employee/edit/${employeeId}`, employeeData);
+}
