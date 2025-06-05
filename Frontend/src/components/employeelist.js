@@ -2,7 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react"; 
-import { deleteEmployee } from "../api";
+import { deleteEmployee,editEmployee } from "../api";
 export default function EmployeeList({employeeList,fetchData,error}) {
    const [filteredEmployee,setFilteredEmployee]=useState(employeeList);
    const [ageFilter,setAgeFiter]=useState("all");
@@ -12,7 +12,14 @@ export default function EmployeeList({employeeList,fetchData,error}) {
    const [expFilter,setExpFilter]=useState("all");
    const [joiningYearfilter,setJoiningYearFilter]=useState("all");
    const [pageno,setPageNo]=useState(1)
-    const [employeeName,setEmployeeName]=useState("");
+   const [employeeName,setEmployeeName]=useState("");
+   const [editemployee,setEditEmployee]=useState(null);
+   const [editFormData, setEditFormData] = useState({employee_name: "",age: "",  gender: "",  skillset: "",
+          experience: "",
+          joining_date: "",
+          job_role: ""  
+           });
+
    const recordsperpage=5;
 // Adding filters to the employeelist 
     const  FilterEmployees=(()=>{
@@ -76,17 +83,47 @@ useEffect(()=>{
 },[employeeList, ageFilter, joiningYearfilter,roleFilter, genderFilter, expFilter, skillFilter]);
 
    
-    const handleDelete = async (employeeId) => {
+    const handleDelete = async (e) => {
       const confirmDelete = window.confirm("Are you sure you want to delete this employee?");
       if (!confirmDelete) return; // if user cancels, do nothing
         try { 
-            await deleteEmployee(employeeId);
+            await deleteEmployee(e);
              fetchData();
         }
         catch (err) {
             console.error("Error deleting employee:", err);
         }
     };
+    //Edit functionality
+    const handleEdit = async(e) => {
+      setEditEmployee(e.employee_id);
+      setEditFormData({...e})
+    };
+
+    const handleEditChange = (e) => {
+      const { name, value } = e.target;
+      setEditFormData((prevData) => ({
+        ...prevData,
+        [name]: value
+      }));
+    };
+    const handleEditSubmit = async(e) => {
+            e.preventDefault();
+      try {
+           await editEmployee(editemployee, editFormData); // API call
+           alert("Employee updated successfully!");
+          fetchData(); // reload updated list
+    setEditEmployee(null); // hide form
+  } catch (err) {
+    console.error("Edit failed", err);
+    alert("Something went wrong while updating.");
+  }
+};
+    const handlecancel = () => {
+      setEditEmployee(null);  // Reset the edit state    
+    };
+
+
 
     // Pagination logic
     const totalRecords = filteredEmployee.length;
@@ -94,6 +131,8 @@ useEffect(()=>{
     const startIndex = (pageno - 1) * recordsperpage;   
     const endIndex = startIndex + recordsperpage;
     const paginatedEmployees = filteredEmployee.slice(startIndex, endIndex);
+  
+    
 
     return(
         <div className="text-white">
@@ -189,6 +228,7 @@ useEffect(()=>{
           <table className="table table-dark table-bordered table-hover table-striped">
             <thead className="table-columns">
               <tr>
+                <th>Employee ID</th>
                 <th>Name</th>
                   <th>Gender</th>
                   <th>Age</th>
@@ -202,6 +242,70 @@ useEffect(()=>{
             <tbody>
                {paginatedEmployees.map((emp) => (
                 <tr key={emp.employee_id}>
+                  <td>{emp.employee_id}</td>
+                  {emp.employee_id === editemployee ? (
+                    <>
+                    <td>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="employee_name"
+                        value={editFormData.employee_name}
+                        onChange={(e) => setEditFormData({ ...editFormData, employee_name: e.target.value })}
+                      />
+                    </td>
+                   <td>
+                      <select name="gender" value={editFormData.gender} onChange={handleEditChange}>
+                      <option>male</option>
+                      <option>female</option>
+                      <option>other</option>
+                      </select>
+                   </td>
+                  <td>
+                     <input
+                      type="number"
+                      name="age"
+                      value={editFormData.age}
+                      onChange={handleEditChange}
+                      />
+                   </td>
+                 <td>
+                 <input type="text"
+                  name="skillset"
+                  value={editFormData.skillset}
+                  onChange={handleEditChange}
+                  />
+                 </td>
+                <td>
+                  <input
+                        type="number"
+                        name="experience"
+                        value={editFormData.experience}
+                        onChange={handleEditChange}
+                   />
+                 </td>
+                <td>
+                 <input
+                type="date"
+                name="joining_date"
+                value={editFormData.joining_date}
+                onChange={handleEditChange}
+                 />
+        </td>
+        <td>
+          <input
+            type="text"
+            name="job_role"
+            value={editFormData.job_role}
+            onChange={handleEditChange}
+          />
+        </td>
+        <td>
+          <button className="btn btn-success btn-sm me-2" onClick={handleEditSubmit} >Save</button>
+          <button className="btn btn-warning btn-sm" onClick={handlecancel}>Cancel</button>
+        </td>
+        </>
+      ):(<>
                   <td>{emp.employee_name}</td>
                   <td>{emp.gender}</td>
                   <td>{emp.age}</td>
@@ -210,8 +314,10 @@ useEffect(()=>{
                   <td>{emp.joining_date}</td>
                   <td>{emp.job_role}</td>
                   <td>
+                    <button className="btn btn-primary me-2 " onClick={()=>handleEdit(emp)}>Edit</button>
                     <button className="btn btn-danger" onClick={()=>handleDelete(emp.employee_id)}>Delete</button>
                   </td>
+                  </>)}
                 </tr>))}
             </tbody>
           </table>
